@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ray-Ban Wayfarer 深度测评 - OptiLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf9f5;
+      --glacier-light: #f5f7fa;
+      --glacier-mid: #e8edf3;
+      --glacier-deep: #c6cbd7;
+      --text: #3a3f47;
+      --text-light: #6b7280;
+      --gold: #d4af37;
+      --shadow: rgba(0,0,0,0.03);
+      --border: #e8edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(253,249,245,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+      background: var(--glacier-light);
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 0 5%;
+      max-width: 1000px;
+      margin: 100px auto 0;
+    }
+
+    .breadcrumb {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .post-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+      line-height: 1.3;
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .featured-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 2rem 0;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .content-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px var(--shadow);
+    }
+
+    .section-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .spec-item {
+      background: var(--glacier-light);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .spec-label {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .spec-value {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+
+    .pros-cons {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .pros, .cons {
+      flex: 1;
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .pros {
+      background: #f0faf0;
+      border: 1px solid #c8e6c9;
+    }
+
+    .cons {
+      background: #fdf0f0;
+      border: 1px solid #ffcdd2;
+    }
+
+    .pros h4, .cons h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .pros h4 { color: #2e7d32; }
+    .cons h4 { color: #c62828; }
+
+    .pros ul, .cons ul {
+      padding-left: 1.5rem;
+    }
+
+    .pros li, .cons li {
+      margin-bottom: 0.5rem;
+    }
+
+    .comments-section {
+      margin: 3rem 0;
+    }
+
+    .comment {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 3px 10px var(--shadow);
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--glacier-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .comment-author {
+      font-weight: 600;
+    }
+
+    .comment-date {
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+
+    .rating {
+      color: var(--gold);
+      margin: 0.5rem 0;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 2rem 0;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 0 5%;
+        margin-top: 100px;
+      }
+      .post-title {
+        font-size: 2rem;
+      }
+      .featured-img {
+        height: 250px;
+      }
+      .pros-cons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Opti<span>Lens</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="reviews.html" class="active">眼镜测评</a></li>
+        <li><a href="brands.html">推荐品牌</a></li>
+        <li><a href="guides.html">购买指南</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </nav>
+    <input type="text" class="search-box" placeholder="搜索..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; background: white; width: 200px;">
+  </header>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="reviews.html">眼镜测评</a> > Ray-Ban Wayfarer 深度测评
+    </div>
+
+    <h1 class="post-title">经典永不过时：Ray-Ban Wayfarer 深度测评</h1>
+    <div class="post-meta">
+      <span>2025.04.10</span>
+      <span>作者：时尚编辑Luna</span>
+      <span>阅读时长：8分钟</span>
+      <span>评分：★★★★☆ 4.5/5</span>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1584269288185-0d27c7b3b758?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Ray-Ban Wayfarer" class="featured-img">
+
+    <div class="content-section">
+      <h2 class="section-header">产品基本信息</h2>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">品牌</div>
+          <div class="spec-value">Ray-Ban</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">型号</div>
+          <div class="spec-value">RB2140</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">镜框材质</div>
+          <div class="spec-value">醋酸纤维</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">镜片材质</div>
+          <div class="spec-value">玻璃</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">尺寸</div>
+          <div class="spec-value">50-22-145</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">颜色</div>
+          <div class="spec-value">黑色/茶色</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">价格</div>
+          <div class="spec-value">¥1,299</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">防护等级</div>
+          <div class="spec-value">UV400</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">外观设计</h2>
+      <p>Ray-Ban Wayfarer 自1952年问世以来，一直是时尚界的标志性单品。我们收到的这款RB2140采用经典黑色醋酸纤维镜框，搭配G-15绿色镜片，复古感十足。</p>
+      <p>镜框线条硬朗，前宽后窄的设计能很好地修饰脸型，尤其适合圆脸和方脸佩戴者。镜腿末端的金属Ray-Ban标志低调而精致，彰显品牌身份。</p>
+      
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1584269288185-0d27c7b3b758?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="正面" class="gallery-img">
+        <img src="https://images.unsplash.com/photo-1584270047473-5722f1a5a30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="侧面" class="gallery-img">
+        <img src="https://images.unsplash.com/photo-1584270047734-029d9b21e6a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="细节" class="gallery-img">
+        <img src="https://images.unsplash.com/photo-1584270047734-029d9b21e6a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="佩戴效果" class="gallery-img">
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">佩戴体验</h2>
+      <p>重量：28克 —— 在同类产品中属于中等偏轻水平，长时间佩戴无压迫感。</p>
+      <p>鼻托：采用固定式设计，虽然不可调节，但弧度贴合大多数亚洲人鼻梁，不易下滑。</p>
+      <p>镜腿：末端略微内收，夹持力适中，跑步或快速转头时也不会脱落。</p>
+      <p>适合脸型：圆脸（可增加面部线条感）、方脸（柔化下颌角）、心形脸（平衡额头宽度）。长脸佩戴时建议选择稍宽的款式。</p>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">功能测试</h2>
+      <p><strong>紫外线防护：</strong>经专业仪器测试，UV400防护达标，能100%阻隔UVA和UVB射线。</p>
+      <p><strong>镜片透光率：</strong>G-15镜片透光率约15%，适合强光环境，色彩还原自然，不偏色。</p>
+      <p><strong>抗刮性：</strong>玻璃镜片硬度高，日常使用不易刮花，但意外跌落时比树脂镜片更易碎裂。</p>
+      <p><strong>适用场景：</strong>日常通勤、驾车、户外活动、时尚搭配 —— 几乎全能。</p>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">优缺点总结</h2>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>优点</h4>
+          <ul>
+            <li>经典设计，永不过时</li>
+            <li>材质扎实，做工精良</li>
+            <li>UV400防护，安全可靠</li>
+            <li>适合多种脸型和场合</li>
+            <li>品牌保值，二手市场流通性好</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>缺点</h4>
+          <ul>
+            <li>价格偏高</li>
+            <li>玻璃镜片较重且易碎</li>
+            <li>鼻托不可调节</li>
+            <li>仿品众多，购买需谨慎</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section comments-section">
+      <h2 class="section-header">用户评价</h2>
+      <div class="comment">
+        <div class="comment-header">
+          <div class="avatar">Z</div>
+          <div class="comment-author">张女士</div>
+          <div class="comment-date">2025.04.05</div>
+        </div>
+        <div class="rating">★★★★★</div>
+        <p>买了三年，依然最爱的一副墨镜！上班通勤、周末出游都戴它，同事朋友问链接都问烦了。质量真的没话说。</p>
+      </div>
+      <div class="comment">
+        <div class="comment-header">
+          <div class="avatar">L</div>
+          <div class="comment-author">李先生</div>
+          <div class="comment-date">2025.03.28</div>
+        </div>
+        <div class="rating">★★★★☆</div>
+        <p>颜值确实高，但鼻梁低的朋友可能会觉得容易下滑。我加了个防滑套就完美解决了。总体非常满意！</p>
+      </div>
+    </div>
+
+    <a href="reviews.html" class="back-btn">← 返回测评列表</a>
+  </main>
+
+  <footer>
+    © 2025 OptiLens 眼镜指南 · 专业测评 · 客观推荐 · 用心服务
+  </footer>
+
+</body>
+</html>
