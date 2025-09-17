@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>关于我们 - OptiLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf9f5;
+      --glacier-light: #f5f7fa;
+      --glacier-mid: #e8edf3;
+      --glacier-deep: #c6cbd7;
+      --text: #3a3f47;
+      --text-light: #6b7280;
+      --gold: #d4af37;
+      --shadow: rgba(0,0,0,0.03);
+      --border: #e8edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(253,249,245,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+      background: var(--glacier-light);
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 0 5%;
+      max-width: 1000px;
+      margin: 100px auto 0;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .mission-statement {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .mission-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .team-section {
+      margin: 4rem 0;
+    }
+
+    .section-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--gold);
+      display: inline-block;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .team-member {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px var(--shadow);
+      text-align: center;
+    }
+
+    .member-photo {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .member-info {
+      padding: 1.5rem;
+    }
+
+    .member-name {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .member-title {
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .member-bio {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .contact-section {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+      margin: 4rem 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin: 2rem 0;
+    }
+
+    .contact-method {
+      text-align: center;
+    }
+
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--glacier-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .contact-title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-detail {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+      margin: 4rem 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
+
+    textarea {
+      min-height: 150px;
+      grid-column: 1 / -1;
+    }
+
+    .submit-btn {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .partners-section {
+      margin: 4rem 0;
+    }
+
+    .partners-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4rem;
+      margin: 3rem 0;
+    }
+
+    .partner-logo {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text);
+      opacity: 0.8;
+      transition: all 0.3s;
+    }
+
+    .partner-logo:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .partners-grid {
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Opti<span>Lens</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="reviews.html">眼镜测评</a></li>
+        <li><a href="brands.html">推荐品牌</a></li>
+        <li><a href="guides.html">购买指南</a></li>
+        <li><a href="about.html" class="active">关于我们</a></li>
+      </ul>
+    </nav>
+    <input type="text" class="search-box" placeholder="搜索..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; background: white; width: 200px;">
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">关于我们</h1>
+      <p style="color: var(--text-light); font-size: 1.1rem;">了解我们的团队、使命和价值观</p>
+    </div>
+
+    <div class="mission-statement">
+      <p class="mission-text">
+        OptiLens 创立于2025年，致力于为眼镜消费者提供专业、客观、深度的测评内容和购买指南。
+        我们相信，眼镜不仅是视力矫正工具，更是个人风格的表达和生活品质的体现。
+        我们的使命是帮助每一位用户找到最适合自己的眼镜，让视觉体验更美好。
+      </p>
+    </div>
+
+    <div class="team-section">
+      <h2 class="section-header">我们的团队</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="张明" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">张明</h3>
+            <p class="member-title">首席验光师</p>
+            <p class="member-bio">国家一级验光师，15年行业经验，曾任职于多家知名眼科医院，精通各类视力问题的解决方案。</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="李娜" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">李娜</h3>
+            <p class="member-title">时尚主编</p>
+            <p class="member-bio">前时尚杂志编辑，对眼镜设计与搭配有独到见解，擅长将专业测评与时尚趋势完美结合。</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="王强" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">王强</h3>
+            <p class="member-title">技术评测师</p>
+            <p class="member-bio">光学工程硕士，专注于眼镜材料与功能测试，用科学数据为用户提供客观评价。</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="陈琳" class="member-photo">
+          <div class="member-info">
+            <h3 class="member-name">陈琳</h3>
+            <p class="member-title">用户研究员</p>
+            <p class="member-bio">用户体验专家，负责收集用户反馈，优化网站功能，确保每位访客都能获得最佳体验。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <h2 class="section-header">联系我们</h2>
+      <div class="contact-grid">
+        <div class="contact-method">
+          <div class="contact-icon">📧</div>
+          <h3 class="contact-title">邮箱</h3>
+          <p class="contact-detail">contact@optilens.com</p>
+          <p class="contact-detail">media@optilens.com</p>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">📱</div>
+          <h3 class="contact-title">电话</h3>
+          <p class="contact-detail">400-123-4567</p>
+          <p class="contact-detail">工作日 9:00-18:00</p>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">📍</div>
+          <h3 class="contact-title">地址</h3>
+          <p class="contact-detail">上海市静安区南京西路1234号</p>
+          <p class="contact-detail">视觉科技大厦 18层</p>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">💬</div>
+          <h3 class="contact-title">在线客服</h3>
+          <p class="contact-detail">点击右下角聊天图标</p>
+          <p class="contact-detail">实时在线咨询</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2 class="section-header">留言反馈</h2>
+      <form>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">邮箱</label>
+            <input type="email" id="email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">主题</label>
+          <select id="subject" required>
+            <option value="">请选择</option>
+            <option value="合作">商务合作</option>
+            <option value="投稿">内容投稿</option>
+            <option value="建议">网站建议</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">留言内容</label>
+          <textarea id="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">提交留言</button>
+      </form>
+    </div>
+
+    <div class="partners-section">
+      <h2 class="section-header">合作伙伴</h2>
+      <div class="partners-grid">
+        <div class="partner-logo">Ray-Ban</div>
+        <div class="partner-logo">Oakley</div>
+        <div class="partner-logo">HUAWEI</div>
+        <div class="partner-logo">Gentle Monster</div>
+        <div class="partner-logo">ZEISS</div>
+        <div class="partner-logo">Essilor</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 OptiLens 眼镜指南 · 专业测评 · 客观推荐 · 用心服务
+  </footer>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('感谢您的留言！我们会尽快与您联系。');
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ray-Ban 品牌详情 - OptiLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf9f5;
+      --glacier-light: #f5f7fa;
+      --glacier-mid: #e8edf3;
+      --glacier-deep: #c6cbd7;
+      --text: #3a3f47;
+      --text-light: #6b7280;
+      --gold: #d4af37;
+      --shadow: rgba(0,0,0,0.03);
+      --border: #e8edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(253,249,245,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+      background: var(--glacier-light);
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 0 5%;
+      max-width: 1000px;
+      margin: 100px auto 0;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .brand-logo-large {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: #000;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .brand-slogan {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .content-section {
+      margin: 3rem 0;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+
+    .section-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--gold);
+      display: inline-block;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--glacier-mid);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      justify-content: flex-end;
+      padding-right: 50%;
+    }
+
+    .timeline-item:nth-child(even) {
+      justify-content: flex-start;
+      padding-left: 50%;
+    }
+
+    .timeline-content {
+      background: var(--glacier-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .timeline-year {
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .featured-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .product-card {
+      background: var(--glacier-light);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .product-img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.2rem;
+    }
+
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.8rem;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 2rem 0;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        padding: 0;
+        justify-content: flex-start;
+        margin-left: 40px;
+      }
+      .brand-logo-large {
+        font-size: 2.5rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Opti<span>Lens</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="reviews.html">眼镜测评</a></li>
+        <li><a href="brands.html" class="active">推荐品牌</a></li>
+        <li><a href="guides.html">购买指南</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </nav>
+    <input type="text" class="search-box" placeholder="搜索..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; background: white; width: 200px;">
+  </header>
+
+  <main>
+    <div class="brand-header">
+      <div class="brand-logo-large">Ray-Ban</div>
+      <p class="brand-slogan">Since 1937 —— 定义墨镜的永恒经典</p>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">品牌故事</h2>
+      <p>Ray-Ban 诞生于1937年，最初是为美国空军飞行员设计的防护眼镜。其标志性的“防眩光”镜片（Ray-Ban 意为“阻挡光线”）迅速在军方获得认可，并于1939年正式向公众发售。</p>
+      <p>1950-60年代，Ray-Ban 凭借 Wayfarer 和 Aviator 两款经典设计，成为好莱坞明星的标配，从詹姆斯·迪恩到奥黛丽·赫本，从《蒂凡尼的早餐》到《壮志凌云》，Ray-Ban 的身影贯穿了整个流行文化史。</p>
+      <p>如今，Ray-Ban 隶属于意大利 Luxottica 集团，产品线涵盖太阳镜、光学镜架、智能眼镜等多个领域，但始终保持着对经典设计的坚守与创新。</p>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">历史里程碑</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1936</div>
+            <p>美国陆军航空队委托 Bausch & Lomb 开发防眩光飞行眼镜</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1939</div>
+            <p>Aviator 型号正式向公众发售，成为首款民用飞行员墨镜</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1952</div>
+            <p>Wayfarer 问世，采用革命性的塑料镜框设计</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1982</div>
+            <p>《蒂凡尼的早餐》让 Wayfarer 成为全球时尚符号</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2021</div>
+            <p>推出 Ray-Ban Stories 智能眼镜，内置摄像头与语音助手</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">明星产品系列</h2>
+      <div class="featured-products">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1584269288185-0d27c7b3b758?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wayfarer" class="product-img">
+          <div class="product-info">
+            <h4 class="product-name">Wayfarer RB2140</h4>
+            <p class="product-desc">经典矩形框，适合多种脸型</p>
+            <div class="product-price">¥1,299</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1579978789862-43a5a43a1c99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aviator" class="product-img">
+          <div class="product-info">
+            <h4 class="product-name">Aviator RB3025</h4>
+            <p class="product-desc">飞行员经典，金属框架</p>
+            <div class="product-price">¥1,499</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1614975531091-3e3e4c6b5d5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clubmaster" class="product-img">
+          <div class="product-info">
+            <h4 class="product-name">Clubmaster RB3016</h4>
+            <p class="product-desc">复古学院风，半框设计</p>
+            <div class="product-price">¥1,199</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stories" class="product-img">
+          <div class="product-info">
+            <h4 class="product-name">Stories RB8000</h4>
+            <p class="product-desc">智能眼镜，支持拍照录像</p>
+            <div class="product-price">¥2,299</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 class="section-header">品牌特色</h2>
+      <ul style="padding-left: 2rem; font-size: 1.1rem; line-height: 2;">
+        <li><strong>经典传承</strong>：多款设计历经数十年仍畅销不衰</li>
+        <li><strong>品质保证</strong>：所有产品均通过严格质量检测</li>
+        <li><strong>技术创新</strong>：从玻璃镜片到智能眼镜，持续引领行业</li>
+        <li><strong>环保承诺</strong>：2025年起，包装100%使用可回收材料</li>
+        <li><strong>定制服务</strong>：部分门店提供镜框刻字、镜片定制服务</li>
+      </ul>
+    </div>
+
+    <a href="brands.html" class="back-btn">← 返回品牌列表</a>
+  </main>
+
+  <footer>
+    © 2025 OptiLens 眼镜指南 · 专业测评 · 客观推荐 · 用心服务
+  </footer>
+
+</body>
+</html>

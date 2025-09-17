@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>眼镜测评 - OptiLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf9f5;
+      --glacier-light: #f5f7fa;
+      --glacier-mid: #e8edf3;
+      --glacier-deep: #c6cbd7;
+      --text: #3a3f47;
+      --text-light: #6b7280;
+      --gold: #d4af37;
+      --shadow: rgba(0,0,0,0.03);
+      --border: #e8edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(253,249,245,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+      background: var(--glacier-light);
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 0 5%;
+    }
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--gold);
+      color: white;
+      border-color: var(--gold);
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .review-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .review-body {
+      padding: 1.5rem;
+    }
+
+    .review-tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--glacier-light);
+      color: var(--text);
+      font-size: 0.8rem;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+      line-height: 1.3;
+    }
+
+    .review-meta {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin: 0.5rem 0;
+    }
+
+    .review-excerpt {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin: 1rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .read-more {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 3rem 0;
+    }
+
+    .page-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .page-btn:hover,
+    .page-btn.active {
+      background: var(--gold);
+      color: white;
+      border-color: var(--gold);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+      .review-img {
+        height: 180px;
+      }
+      .review-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Opti<span>Lens</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="reviews.html" class="active">眼镜测评</a></li>
+        <li><a href="brands.html">推荐品牌</a></li>
+        <li><a href="guides.html">购买指南</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </nav>
+    <input type="text" class="search-box" placeholder="搜索测评..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; background: white; width: 200px;">
+  </header>
+
+  <main>
+    <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin: 3rem 0 1rem; color: var(--text);">眼镜测评</h1>
+    <p style="color: var(--text-light); margin-bottom: 2rem;">专业、客观、深度 —— 我们为你试戴每一副眼镜</p>
+
+    <div class="filters">
+      <button class="filter-btn active">全部</button>
+      <button class="filter-btn">近视眼镜</button>
+      <button class="filter-btn">太阳镜</button>
+      <button class="filter-btn">运动眼镜</button>
+      <button class="filter-btn">智能眼镜</button>
+      <button class="filter-btn">老花镜</button>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <img src="https://images.unsplash.com/photo-1584269288185-0d27c7b3b758?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="墨镜测评" class="review-img">
+        <div class="review-body">
+          <div>
+            <span class="review-tag">太阳镜</span>
+            <span class="review-tag">Ray-Ban</span>
+            <span class="review-tag">防UV</span>
+          </div>
+          <h3 class="review-title">经典永不过时：Ray-Ban Wayfarer 深度测评</h3>
+          <div class="review-meta">2025.04.10 · 作者：时尚编辑Luna</div>
+          <p class="review-excerpt">从材质工艺到佩戴舒适度，我们对这款传奇墨镜进行了全方位测试。适合脸型、场合适配度、性价比分析一应俱全。</p>
+          <a href="review-detail.html" class="read-more">阅读全文 →</a>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="骑行眼镜" class="review-img">
+        <div class="review-body">
+          <div>
+            <span class="review-tag">运动眼镜</span>
+            <span class="review-tag">Oakley</span>
+            <span class="review-tag">防雾</span>
+          </div>
+          <h3 class="review-title">骑行者的第二层皮肤：Oakley Sutro Lite 评测</h3>
+          <div class="review-meta">2025.04.08 · 作者：运动装备专家</div>
+          <p class="review-excerpt">轻量化设计、Prizm镜片技术、防滑鼻托 —— 我们在真实骑行环境中测试了它的每一项性能。</p>
+          <a href="review-detail.html" class="read-more">阅读全文 →</a>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="智能眼镜" class="review-img">
+        <div class="review-body">
+          <div>
+            <span class="review-tag">智能眼镜</span>
+            <span class="review-tag">HUAWEI</span>
+            <span class="review-tag">AR</span>
+          </div>
+          <h3 class="review-title">未来已来：HUAWEI CyberFrame 智能眼镜体验</h3>
+          <div class="review-meta">2025.04.05 · 作者：科技评测师</div>
+          <p class="review-excerpt">语音助手、实时翻译、健康监测 —— 我们连续使用7天，告诉你它是否值得入手。</p>
+          <a href="review-detail.html" class="read-more">阅读全文 →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">></button>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 OptiLens 眼镜指南 · 专业测评 · 客观推荐 · 用心服务
+  </footer>
+
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

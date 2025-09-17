@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>购买指南 - OptiLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf9f5;
+      --glacier-light: #f5f7fa;
+      --glacier-mid: #e8edf3;
+      --glacier-deep: #c6cbd7;
+      --text: #3a3f47;
+      --text-light: #6b7280;
+      --gold: #d4af37;
+      --shadow: rgba(0,0,0,0.03);
+      --border: #e8edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(253,249,245,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+      background: var(--glacier-light);
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 0 5%;
+      max-width: 1000px;
+      margin: 100px auto 0;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .guide-nav {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .guide-nav-btn {
+      padding: 0.8rem 1.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .guide-nav-btn:hover,
+    .guide-nav-btn.active {
+      background: var(--gold);
+      color: white;
+      border-color: var(--gold);
+    }
+
+    .guide-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+      margin: 2rem 0;
+    }
+
+    .guide-section {
+      margin-bottom: 3rem;
+    }
+
+    .guide-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .face-shape-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .face-shape-card {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--glacier-light);
+      border-radius: 12px;
+    }
+
+    .face-shape-name {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .face-shape-recommend {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .tip-list {
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .tip-list li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    .tip-list li::before {
+      content: '💡';
+      position: absolute;
+      left: -1.5rem;
+      top: 0;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      background: var(--glacier-light);
+      font-weight: 600;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .dos-donts {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .dos, .donts {
+      flex: 1;
+      padding: 2rem;
+      border-radius: 12px;
+    }
+
+    .dos {
+      background: #f0faf0;
+      border: 1px solid #c8e6c9;
+    }
+
+    .donts {
+      background: #fdf0f0;
+      border: 1px solid #ffcdd2;
+    }
+
+    .dos h4, .donts h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .dos h4 { color: #2e7d32; }
+    .donts h4 { color: #c62828; }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .guide-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      .dos-donts {
+        flex-direction: column;
+      }
+      .guide-content {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Opti<span>Lens</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="reviews.html">眼镜测评</a></li>
+        <li><a href="brands.html">推荐品牌</a></li>
+        <li><a href="guides.html" class="active">购买指南</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </nav>
+    <input type="text" class="search-box" placeholder="搜索指南..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; background: white; width: 200px;">
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">购买指南</h1>
+      <p style="color: var(--text-light); font-size: 1.1rem;">从脸型匹配到镜片选择，我们为你提供专业、实用的购买建议</p>
+    </div>
+
+    <div class="guide-nav">
+      <button class="guide-nav-btn active" data-target="face-shape">根据脸型选择</button>
+      <button class="guide-nav-btn" data-target="lens-guide">镜片知识科普</button>
+      <button class="guide-nav-btn" data-target="care-guide">眼镜保养方法</button>
+    </div>
+
+    <div class="guide-content">
+      <div id="face-shape" class="guide-section">
+        <h2 class="section-title">根据脸型选择眼镜</h2>
+        <p>选择合适的眼镜框型可以平衡面部比例，突出优点，修饰不足。以下是针对不同脸型的专业建议：</p>
+        
+        <div class="face-shape-grid">
+          <div class="face-shape-card">
+            <div class="face-shape-name">圆脸</div>
+            <p class="face-shape-recommend">选择有棱角的方形或矩形镜框，增加面部线条感，避免圆形镜框。</p>
+          </div>
+          <div class="face-shape-card">
+            <div class="face-shape-name">方脸</div>
+            <p class="face-shape-recommend">选择圆形或椭圆镜框，柔化下颌线条，避免直角镜框。</p>
+          </div>
+          <div class="face-shape-card">
+            <div class="face-shape-name">长脸</div>
+            <p class="face-shape-recommend">选择大框、深色、有装饰的镜框，缩短脸型视觉长度。</p>
+          </div>
+          <div class="face-shape-card">
+            <div class="face-shape-name">心形脸</div>
+            <p class="face-shape-recommend">选择底部较宽的镜框，平衡额头与下巴比例。</p>
+          </div>
+        </div>
+
+        <ul class="tip-list">
+          <li>试戴时，确保镜框上缘与眉毛保持适当距离，不要压到眉毛</li>
+          <li>镜腿不应夹头，佩戴时应感觉舒适无压迫</li>
+          <li>镜框宽度应与脸部最宽处相当，避免过大或过小</li>
+        </ul>
+      </div>
+
+      <div id="lens-guide" class="guide-section" style="display: none;">
+        <h2 class="section-title">镜片知识科普</h2>
+        <p>了解镜片的基本参数和特性，可以帮助你选择最适合自己的镜片：</p>
+
+        <table class="comparison-table">
+          <tr>
+            <th>参数</th>
+            <th>说明</th>
+            <th>选择建议</th>
+          </tr>
+          <tr>
+            <td>折射率</td>
+            <td>镜片对光线的偏折能力，数值越高镜片越薄</td>
+            <td>度数越高，建议选择高折射率（1.67或1.74）</td>
+          </tr>
+          <tr>
+            <td>阿贝数</td>
+            <td>衡量镜片色散程度，数值越高视觉越清晰</td>
+            <td>一般选择30以上，追求高清晰度可选40以上</td>
+          </tr>
+          <tr>
+            <td>材质</td>
+            <td>树脂（轻、抗冲击）、玻璃（清晰、重）、PC（超韧、运动）</td>
+            <td>日常使用选树脂，运动选PC，追求极致清晰选玻璃</td>
+          </tr>
+          <tr>
+            <td>功能镀膜</td>
+            <td>防蓝光、防紫外线、防反射、防刮、防污</td>
+            <td>根据使用场景选择，办公族建议防蓝光，户外建议防UV</td>
+          </tr>
+        </table>
+
+        <div class="dos-donts">
+          <div class="dos">
+            <h4>推荐做法</h4>
+            <ul class="tip-list">
+              <li>根据度数选择合适的折射率</li>
+              <li>选择知名品牌镜片，质量有保障</li>
+              <li>根据使用场景选择功能镀膜</li>
+              <li>定期检查镜片磨损情况</li>
+            </ul>
+          </div>
+          <div class="donts">
+            <h4>避免做法</h4>
+            <ul class="tip-list">
+              <li>不要只看价格，忽略镜片质量</li>
+              <li>不要随意购买无品牌镜片</li>
+              <li>不要忽略阿贝数，可能导致视觉疲劳</li>
+              <li>不要用衣服擦拭镜片，会刮花镀膜</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="care-guide" class="guide-section" style="display: none;">
+        <h2 class="section-title">眼镜保养方法</h2>
+        <p>正确的眼镜保养可以延长使用寿命，保持最佳视觉效果：</p>
+
+        <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; font-weight: 600;">清洁方法</h3>
+        <ul class="tip-list">
+          <li>使用专业眼镜清洁液和超细纤维布</li>
+          <li>清洁前用清水冲洗，去除灰尘颗粒</li>
+          <li>避免使用纸巾、衣服等粗糙材料擦拭</li>
+          <li>不要使用酒精、肥皂等化学溶剂</li>
+        </ul>
+
+        <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; font-weight: 600;">存放注意事项</h3>
+        <ul class="tip-list">
+          <li>不佩戴时放入眼镜盒，避免挤压</li>
+          <li>避免高温环境（如汽车仪表盘上）</li>
+          <li>远离化学品（香水、发胶等）</li>
+          <li>定期检查螺丝松紧，及时拧紧</li>
+        </ul>
+
+        <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; font-weight: 600;">定期维护</h3>
+        <ul class="tip-list">
+          <li>每6-12个月到专业店进行调整</li>
+          <li>检查镜片镀膜是否完好</li>
+          <li>更换老化或损坏的鼻托</li>
+          <li>重新校准镜架，确保佩戴舒适</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 OptiLens 眼镜指南 · 专业测评 · 客观推荐 · 用心服务
+  </footer>
+
+  <script>
+    document.querySelectorAll('.guide-nav-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.guide-nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.guide-section').forEach(section => section.style.display = 'none');
+        this.classList.add('active');
+        const target = this.getAttribute('data-target');
+        document.getElementById(target).style.display = 'block';
+      });
+    });
+  </script>
+
+</body>
+</html>

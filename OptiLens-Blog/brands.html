@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>推荐品牌 - OptiLens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf9f5;
+      --glacier-light: #f5f7fa;
+      --glacier-mid: #e8edf3;
+      --glacier-deep: #c6cbd7;
+      --text: #3a3f47;
+      --text-light: #6b7280;
+      --gold: #d4af37;
+      --shadow: rgba(0,0,0,0.03);
+      --border: #e8edf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(253,249,245,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--text);
+      background: var(--glacier-light);
+    }
+
+    main {
+      margin-top: 100px;
+      padding: 0 5%;
+    }
+
+    .page-header {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .page-desc {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .brand-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px var(--shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glacier-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .brand-tagline {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .brand-features {
+      background: var(--glacier-light);
+      padding: 1rem;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .brand-features li {
+      margin: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .brand-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .view-btn {
+      display: inline-block;
+      margin: 1.5rem 0;
+      padding: 0.6rem 1.5rem;
+      background: var(--gold);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .view-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 5%;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .brand-grid {
+        grid-template-columns: 1fr;
+      }
+      .page-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Opti<span>Lens</span></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="reviews.html">眼镜测评</a></li>
+        <li><a href="brands.html" class="active">推荐品牌</a></li>
+        <li><a href="guides.html">购买指南</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+    </nav>
+    <input type="text" class="search-box" placeholder="搜索品牌..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.95rem; background: white; width: 200px;">
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title">推荐品牌</h1>
+      <p class="page-desc">我们精选全球最具影响力的眼镜品牌，从百年经典到新锐设计，满足不同人群的视觉需求与审美偏好。</p>
+    </div>
+
+    <div class="brand-grid">
+      <div class="brand-card">
+        <div class="brand-logo" style="background: #000; color: white;">Ray-Ban</div>
+        <h3 class="brand-name">Ray-Ban</h3>
+        <p class="brand-tagline">始于1937，墨镜界的传奇</p>
+        <ul class="brand-features">
+          <li>经典款式永不过时</li>
+          <li>100% UV防护</li>
+          <li>全球售后服务</li>
+        </ul>
+        <a href="brand-detail.html" class="view-btn">探索品牌</a>
+      </div>
+
+      <div class="brand-card">
+        <div class="brand-logo" style="background: #f0f0f0; color: #333;">Oakley</div>
+        <h3 class="brand-name">Oakley</h3>
+        <p class="brand-tagline">运动眼镜的科技先锋</p>
+        <ul class="brand-features">
+          <li>专业运动防护</li>
+          <li>Prizm镜片技术</li>
+          <li>超轻量化设计</li>
+        </ul>
+        <a href="brand-detail.html" class="view-btn">探索品牌</a>
+      </div>
+
+      <div class="brand-card">
+        <div class="brand-logo" style="background: linear-gradient(135deg, #50c8ff, #b72aff); color: white;">HUAWEI</div>
+        <h3 class="brand-name">HUAWEI</h3>
+        <p class="brand-tagline">智能眼镜的未来定义者</p>
+        <ul class="brand-features">
+          <li>AR增强现实</li>
+          <li>语音助手交互</li>
+          <li>健康数据监测</li>
+        </ul>
+        <a href="brand-detail.html" class="view-btn">探索品牌</a>
+      </div>
+
+      <div class="brand-card">
+        <div class="brand-logo" style="background: #222; color: #ffd700;">Gentle Monster</div>
+        <h3 class="brand-name">Gentle Monster</h3>
+        <p class="brand-tagline">艺术与时尚的视觉革命</p>
+        <ul class="brand-features">
+          <li>先锋设计风格</li>
+          <li>限量联名系列</li>
+          <li>沉浸式门店体验</li>
+        </ul>
+        <a href="brand-detail.html" class="view-btn">探索品牌</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 OptiLens 眼镜指南 · 专业测评 · 客观推荐 · 用心服务
+  </footer>
+
+</body>
+</html>
